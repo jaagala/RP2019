@@ -4,6 +4,7 @@
   "description": "Veebipood",
   "main": "server.js",
   "scripts": {
+    "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -19,5 +20,10 @@
   "homepage": "https://github.com/jaagala/RP2019#readme",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^5.0.4",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9"
   }
 }
