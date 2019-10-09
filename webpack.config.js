@@ -17,14 +17,15 @@ module.exports = {
     ],
     module: {
         rules: [
-            { 
-            test: /\.(js|jsx)$/,
-            exclude: /node_modules/, 
-            use: 'babel-loader'
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /(node_modules|bower_components)/,
+                use:'babel-loader',
             }
         ]
     },
     devServer: {
+        historyApiFallback: true,
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 9000
