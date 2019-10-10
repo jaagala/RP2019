@@ -1,6 +1,6 @@
 function setup(){
 
-    const x = window.location;
+    //const x = window.location;
     const urlParams = new URLSearchParams(window.location.search);
     const title = urlParams.get("title");
     const cost = urlParams.get("cost");

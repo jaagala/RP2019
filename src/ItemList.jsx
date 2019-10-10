@@ -1,15 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import propTypes from "prop-types";
 
 const ItemList = (props) => {
     return (
         <div className={"content"}>
             {
-                props.items.map( item => {
+                props.items.map(item => {
                     return <Item
-                    imgSrc = {item.imgSrc}
-                    title = {item.title}
-                    price = {item.price}
+                        key = {item.title}
+                        imgSrc={item.imgSrc}
+                        title={item.title}
+                        price={item.price}
                     />
                 })
             }
@@ -28,5 +30,15 @@ const Item = (props) => {
         </Link>
     )
 }
+
+ItemList.propTypes = {
+    items: propTypes.array
+};
+
+Item.propTypes = {
+    imgSrc: propTypes.string,
+    title: propTypes.string,
+    price: propTypes.sting,
+};
 
 export default ItemList;

@@ -1,8 +1,6 @@
-import React from "react";
 import {laptops, phones} from "./mydatabase";
-import Header from "./ItemList";
 
-const utils = require('./utils.js');
+const utils = require("./utils.js");
 
 const categories = {
     PHONE: "phones",
@@ -31,7 +29,7 @@ function createItems() {
         const element = utils.createItemElement(phone);
         console.log("root", root);
         root.append(element);
-    })
+    });
 }
 
 
@@ -40,7 +38,7 @@ function setupCategoryListener(){
     dropdown.addEventListener("change", (event) => {
         selectedCategory = event.target.value;
         createItems();
-    })  
+    });  
 }
 
 
@@ -57,6 +55,4 @@ function setup(){
 
 module.exports = {
     setup,
-}
-
-export default HomePage;
+};
