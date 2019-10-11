@@ -8,7 +8,8 @@ const ItemList = (props) => {
             {
                 props.items.map(item => {
                     return <Item
-                        key = {item.title}
+                        key = {item.id}
+                        id = {item.id}
                         imgSrc={item.imgSrc}
                         title={item.title}
                         price={item.price}
@@ -21,7 +22,7 @@ const ItemList = (props) => {
 
 const Item = (props) => {
     return (
-        <Link to={"/item"}>
+        <Link to={"/items/"+props.id}>
             <div className={"item"}>
                 <img src={props.imgSrc} />
                 <div className={"item__name"}>{props.title}</div>
@@ -36,6 +37,7 @@ ItemList.propTypes = {
 };
 
 Item.propTypes = {
+    id: propTypes.string,
     imgSrc: propTypes.string,
     title: propTypes.string,
     price: propTypes.sting,

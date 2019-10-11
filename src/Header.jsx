@@ -11,7 +11,7 @@ const Header = () => {
                 <div>
                     <Link to="/">
                         <a href="index.html">
-                            <img src="logo.svg" className="logo"></img>
+                            <img src="/logo.svg" className="logo"></img>
                         </a>
                     </Link>
                 </div>

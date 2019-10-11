@@ -6,8 +6,8 @@
   "scripts": {
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "start:dev": "webpack-dev-server --open --mode\"developement\""
+    "start": "node server/server.js",
+    "start:dev": "webpack-dev-server --open --mode=\"development\""
   },
   "repository": {
     "type": "git",
@@ -31,6 +31,7 @@
   "devDependencies": {
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/preset-env": "^7.6.2",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.3",
