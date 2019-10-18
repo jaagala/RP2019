@@ -8,6 +8,7 @@ const getItems = () => {
             ...phone,
             id: "phones-" + index,
             category: "phones",
+            price: cleanPrice(phone.price),
 
         });
     });
@@ -16,10 +17,16 @@ const getItems = () => {
             ...laptop,
             id: "laptops-" + index,
             category: "laptops",
+            price: cleanPrice(laptop.price),
 
         });
     });
     return items;
+};
+
+const cleanPrice = (dirty) => {
+    const parts = dirty.split("to");
+    return parts[0].replace("$", "");
 };
 
 const getItem = (itemId) => {
