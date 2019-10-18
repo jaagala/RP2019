@@ -1,21 +1,20 @@
 import React from "react";
 import Header from "./Header.jsx";
-import {phones} from "./mydatabase.js";
 import propTypes from "prop-types";
 
 class ItemPage extends React.PureComponent {
 
     constructor(props){
         super(props);
-        this.state = {}
-    };
+        this.state = {};
+    }
 
     componentDidMount(){
         this.fetchItem();
-    };
+    }
 
     fetchItem(){
-        fetch("/api/items/" + this.props.match.params.itemId)
+        fetch("/api/products/" + this.props.match.params.itemId)
             .then(res => {
                 console.log(res);
                 return res.json();
@@ -28,8 +27,8 @@ class ItemPage extends React.PureComponent {
             })
             .catch(err => {
                 console.log("item page ", err);
-            })
-    };
+            });
+    }
 
     render() {
         return (

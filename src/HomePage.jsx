@@ -14,10 +14,10 @@ class HomePage extends React.PureComponent {
 
     componentDidMount(){
         this.fetchItems();
-    };
+    }
 
     fetchItems(){
-        fetch("/api/items")
+        fetch("/api/products")
             .then(res => {
                 //console.log("res", res);
                 return res.json();
@@ -29,20 +29,20 @@ class HomePage extends React.PureComponent {
                 });
             })
             .catch(err => {
-                //console.log("err", err);
+                console.log("err", err);
             });
-    };
+    }
 
     handleDropdown(event) {
         //console.log(event.target.value);
         this.setState({
             selectedCategory: event.target.value
         });
-    };
+    }
 
     getVisibleItems(){
         return this.state.items.filter( item => item.category === this.state.selectedCategory);
-    };
+    }
 
     render() {
         console.log(this.state);
@@ -51,7 +51,7 @@ class HomePage extends React.PureComponent {
                 <Header />
                 <div>
                     <select id="category" onChange={this.handleDropdown.bind(this)}>
-                        <option value="phones" selected>Phones</option>
+                        <option value="phones">Phones</option>
                         <option value="laptops">Laptops</option>
                     </select>
                 </div>

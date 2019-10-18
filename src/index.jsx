@@ -11,7 +11,7 @@ const root = document.getElementById("app");
 ReactDOM.render(
     <BrowserRouter>
         <Route path="/" exact component={HomePage} />
-        <Route path="/items/:itemId" exact component={ItemPage} />
+        <Route path="/products/:itemId" exact component={ItemPage} />
     </BrowserRouter>,
     root
 );

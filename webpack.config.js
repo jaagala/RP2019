@@ -1,13 +1,13 @@
-const path = require('path');
-const CopyPlugin = require('copy-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const path = require("path");
+const CopyPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     mode: "production",
-    entry: './src/index.jsx',
+    entry: "./src/index.jsx",
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
+        path: path.resolve(__dirname, "dist"),
+        filename: "bundle.js"
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -18,26 +18,29 @@ module.exports = {
     module: {
         rules:[
             {
-                enforce: 'pre',
+                enforce: "pre",
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                loader: 'eslint-loader',
+                loader: "eslint-loader",
                 options: {
                     failOnError: true,
-            }
-        }
-        ],
-        rules: [
+                }
+            },
             {
                 test: /\.(js|jsx)$/,
                 exclude: /(node_modules|bower_components)/,
-                use:'babel-loader',
+                use: "babel-loader",
+            },
+            {
+                test: /\.css$/i,
+                use: ["style-loader", "css-loader"]
             }
+        
         ]
     },
     devServer: {
         historyApiFallback: true,
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, "dist"),
         compress: true,
         port: 9000,
         proxy: {

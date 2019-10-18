@@ -13,24 +13,24 @@ const ItemList = (props) => {
                         imgSrc={item.imgSrc}
                         title={item.title}
                         price={item.price}
-                    />
+                    />;
                 })
             }
         </div>
-    )
+    );
 };
 
 const Item = (props) => {
     return (
-        <Link to={"/items/"+props.id}>
+        <Link to={"/products/"+props.id}>
             <div className={"item"}>
                 <img src={props.imgSrc} />
                 <div className={"item__name"}>{props.title}</div>
                 <div className={"item__price"}>{props.price}</div>
             </div>
         </Link>
-    )
-}
+    );
+};
 
 ItemList.propTypes = {
     items: propTypes.array
