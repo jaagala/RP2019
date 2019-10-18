@@ -40,7 +40,7 @@ Item.propTypes = {
     id: propTypes.string,
     imgSrc: propTypes.string,
     title: propTypes.string,
-    price: propTypes.sting,
+    price: propTypes.string,
 };
 
 export default ItemList;
