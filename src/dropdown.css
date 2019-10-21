@@ -5,6 +5,8 @@ body{
   position: relative;
   display: inline-block;
   user-select: none;
+  right: 20px;
+  z-index: 2;
 }
   .custom-select-wrapper select {
     display: none;
@@ -43,6 +45,11 @@ body{
         margin-top: 3px;
         transform: rotate(-135deg) translateY(-50%);
       }
+@media (max-width: 1000px) {
+  .custom-select-trigger{
+    left: 0;
+  }
+}
   .custom-options {
     position: absolute;
     display: block;
@@ -55,7 +62,6 @@ body{
     box-shadow: 0 2px 1px rgba(0,0,0,.07);
     background: #fff;
     transition: all .4s ease-in-out;
-    
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
@@ -101,6 +107,9 @@ body{
     .custom-option:last-of-type {
       border-bottom: 0;
       border-radius: 0 0 4px 4px;
+    }
+    .custom-options:last-of-type{
+      margin: 15px 0 50px;
     }
     .custom-option:hover,
     .custom-option.selection {

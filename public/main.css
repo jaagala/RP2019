@@ -22,14 +22,14 @@
 	background-color: white;
 	padding: 5px;
 }
-.content{
+.items-layout{
 	display: flex;
-	justify-content: space-around;
+	/*justify-content: space-around;*/
 	flex-wrap: wrap;
 	width: 80%;
 	margin: 0 auto;
 }
-.content a {
+.items-layout a {
 	text-decoration: none;
 }
 .item{
@@ -47,7 +47,7 @@
 	transition: .5s all;
 }
 
-.item img{
+.item__img-wrapper{
 	height: 75%;
 	width: 75%;
 	display: block;
@@ -71,8 +71,9 @@
 }
 .itemContainer{
 	box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.2);
-	width: 90%;
+	width: 100%;
 	padding: 40px 20px;
+	background-color: #fff;
 }
 .itemContainer .item__image{
 	width: 200px;

@@ -85,7 +85,7 @@ class HomePage extends React.PureComponent {
                     isSelected={this.isSelected}
                 />
                 <div className={"items-settings"}>
-                    <div>
+                    <div className={"items__found"}>
                         Items found {items.length} in {this.state.selectedCategories.join(", ")}
                     </div>
                     <SortDropdown 

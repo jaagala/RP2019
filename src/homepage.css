@@ -1,10 +1,37 @@
 .itemFilters-wrapper{
+    position: relative;
     display: flex;
     width: 1450px;
     margin: 0 auto;
     margin-bottom: 25px;
+    float: left;
+    clear: left;
+    left: 12%;
 }
 
 .itemFilters-wrapper > div{
     margin-right: 25px;
-} 
+}
+.items__found{
+    position: relative;
+    max-width: 300px;
+    left: -5%;
+}
+@media (max-width: 1000px) {
+    .items__found{
+        left: 0%;
+    }
+    .itemFilters-wrapper{
+        width: 0;
+        float: left;
+        left: 0;
+    }
+    .items-settings{
+        float: right;
+        top: 0;
+}   
+}
+.items-settings{
+    float: right;
+    top: 0;
+}
