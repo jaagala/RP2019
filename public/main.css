@@ -24,10 +24,14 @@
 }
 .items-layout{
 	display: flex;
-	/*justify-content: space-around;*/
 	flex-wrap: wrap;
 	width: 80%;
 	margin: 0 auto;
+}
+@media (max-width: 1000px) {
+	.items-layout{
+		width: 100%;
+	}
 }
 .items-layout a {
 	text-decoration: none;

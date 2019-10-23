@@ -24,7 +24,7 @@
     .itemFilters-wrapper{
         width: 0;
         float: left;
-        left: 0;
+        left: 20px;
     }
     .items-settings{
         float: right;

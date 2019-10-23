@@ -21,8 +21,10 @@
   "homepage": "https://github.com/jaagala/RP2019#readme",
   "dependencies": {
     "babel-preset-react": "^6.24.1",
+    "dotenv": "^8.2.0",
     "eslint": "^6.5.1",
     "express": "^4.17.1",
+    "mongoose": "^5.7.6",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
     "react-router": "^5.1.2",

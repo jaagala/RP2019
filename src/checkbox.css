@@ -5,7 +5,8 @@
 .toggler__name{
     font-family: "Apple Chancery", cursive;
     font-size: 16px;
-    margin-bottom: 5px;
+	margin-bottom: 5px;
+	text-transform: capitalize;
 }
  .toggler {
 	 width: 72px;
