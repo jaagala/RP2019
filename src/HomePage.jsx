@@ -11,10 +11,10 @@ class HomePage extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
-            sortDirection: -1,
+            sortDirection: 1,
             items: [],
-            allCategorires: ["phones", "laptops"],
-            selectedCategories: ["phones"],
+            allCategorires: ["pillows", "other"],
+            selectedCategories: ["pillows"],
         };
     }
 

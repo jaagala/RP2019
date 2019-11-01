@@ -13,6 +13,14 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
+router.delete("/api/products/:itemId", (req, res) => {
+    Product.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err) => {
+        if(err) return res.send(500);
+        console.log("save success");
+        return res.send(204);
+    });
+});
+
 //Creates a new product
 
 router.post("/api/products", (req, res) => {
@@ -37,7 +45,6 @@ router.post("/api/products", (req, res) => {
 // Returns a product 
 
 router.get("/api/products/:itemId", (req, res) => {
-    //res.send(DB.getProduct(req.params.itemId));
     Product.findById(req.params.itemId, function (err, product) {
         if(err){
             console.log("Error:", err);
@@ -51,7 +58,6 @@ router.get("/api/products/:itemId", (req, res) => {
 // Returns all items
 
 router.get("/api/products", (req, res) => {
-    //res.json(DB.getProducts());
     Product.find({}, function(err, products){
         if(err){
             console.log("Error:", err);

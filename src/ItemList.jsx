@@ -13,7 +13,7 @@ const ItemList = (props) => {
                         id = {item.id}
                         imgSrc={item.imgSrc}
                         title={item.title}
-                        price={item.price}
+                        price={item.price+" €"}
                     />;
                 })
             }

@@ -1,0 +1,1 @@
+[{"imgSrc" : "https://nodi.ee/images/detailed/12/pillowcase-yes-no-en--9613.jpg", "title" : "Romantiline padjapüür", "price" : "10", "category" : "pillows"}, {}];

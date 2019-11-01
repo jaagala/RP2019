@@ -25,7 +25,7 @@
             title,
             price,
             category: document.title.split("|")[0].trim(),
-        })
+        });
     });
     console.log(JSON.stringify(arr));
 }

@@ -4,24 +4,18 @@ const path = require("path");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 require("dotenv").config();
-const userRouter = require("./user.js");
+const itemRouter = require("./item.js");
 
 
 const DB_URL = "mongodb+srv://" + process.env.DB_USERNAME + ":" + process.env.DB_PASS + "@cluster0-3hzec.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority";
 
-app.use(userRouter);
+app.use(itemRouter);
 
 app.get("/", (req, res) => {
     res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 app.use(express.static("dist"));
 
-<<<<<<< HEAD
-app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
-});
-app.use(express.static("dist"));
-=======
 function listen(){
     app.listen(PORT, () => {
         console.log("Server started", PORT);
@@ -37,5 +31,4 @@ mongoose.connect(DB_URL)
     .catch(() => {
         console.error("Error happend");
     });
->>>>>>> lesson5
 
