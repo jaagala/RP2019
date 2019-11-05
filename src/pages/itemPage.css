@@ -1,0 +1,8 @@
+.itemPage__img{
+    width: 25%;
+    height: 25%;
+}
+.itemPage__price{
+    text-align: left;
+    color: grey;
+}

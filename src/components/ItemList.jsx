@@ -4,16 +4,17 @@ import propTypes from "prop-types";
 import "./itemlist.css";
 
 const ItemList = (props) => {
+    console.log("items list", props);
     return (
         <div className={"items-layout"}>
             {
                 props.items.map(item => {
                     return <Item
-                        key = {item.id}
-                        id = {item.id}
+                        key = {item._id}
+                        id = {item._id}
                         imgSrc={item.imgSrc}
                         title={item.title}
-                        price={item.price+" €"}
+                        price={item.price}
                     />;
                 })
             }
@@ -30,7 +31,7 @@ const Item = (props) => {
             <div className={"item__description"}>
                 <div className={"item__title"}>{props.title}</div>
                 <div className={"item__footer"}>
-                    <div className={"item__price"}>{props.price}</div>
+                    <div className={"item__price"}>{props.price} €</div>
                     <div className={"item__reviews"}>{`(${getRandomIntInclusive(0,100)} reviews)`}</div>
                 </div>
             </div>
@@ -46,7 +47,7 @@ Item.propTypes = {
     id: propTypes.string,
     imgSrc: propTypes.string,
     title: propTypes.string,
-    price: propTypes.string,
+    price: propTypes.number,
 };
 
 function getRandomIntInclusive(min, max){
