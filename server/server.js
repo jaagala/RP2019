@@ -1,14 +1,17 @@
+const userRouter = require("./user.router.js");
+const itemRouter = require("./item.router.js");
 const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 require("dotenv").config();
-const itemRouter = require("./item.js");
-
+const bodyParser = require("body-parser");
 
 const DB_URL = "mongodb+srv://" + process.env.DB_USERNAME + ":" + process.env.DB_PASS + "@cluster0-3hzec.mongodb.net/" + process.env.DB_NAME + "?retryWrites=true&w=majority";
 
+app.use(bodyParser.json());
+app.use(userRouter);
 app.use(itemRouter);
 
 app.get("/", (req, res) => {

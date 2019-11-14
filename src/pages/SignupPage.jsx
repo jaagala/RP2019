@@ -13,6 +13,19 @@ class SignupPage extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submit", this.state);
+        fetch("/api/users/signup", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(this.state),
+        })
+            .then(res => {
+                console.log("response", res);
+            })
+            .catch(err => {
+                console.log("Error", err);
+            });
     }
     handleChange = (e) => {
         this.setState({
@@ -23,7 +36,7 @@ class SignupPage extends React.Component {
         return(
                 <div className="form">
                     <form className="register-form" onSubmit={this.handleSubmit}>
-                        <input type="text" placeholder="email address" name={"email"} onChange={this.handleChange}/>
+                        <input type="email" placeholder="email address" name={"email"} onChange={this.handleChange}/>
                         <input type="password" placeholder="password" name={"password"} onChange={this.handleChange}/>
                         <input type="password" placeholder="password" name={"confirmPassword"} onChange={this.handleChange}/>
                         <button>create</button >

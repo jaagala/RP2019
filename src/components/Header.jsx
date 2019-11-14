@@ -11,10 +11,10 @@ const Header = () => {
                 <img src="/tlu.png" className="header__logo"></img>
             </Link>
             <div className="header__buttons">
-                <div className={"header__button"}>
+                <Link className={"header__button"} to={"/login"}>
                     <img src={userIcon}></img>
                     <div className={"header__button-text"}>Login/<br></br>Register</div>  
-                </div>
+                </Link>
                 <div className={"header__button"}>
                     <img src={shoppingCart} style={{height: 35}}></img>
                         <div className={"header__button-text"}>Cart</div>

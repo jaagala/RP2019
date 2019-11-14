@@ -1,21 +1,14 @@
 const express = require("express");
 const router = express.Router();
-//const DB = require("./database.js");
 const mongoose = require("mongoose");
-
-const productSchema = new mongoose.Schema({ 
-    imgSrc: { type: String, required: true },
-    title: { type: String, required: true },
-    price: { type: Number, required: true },
-    category: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now }
-});
-
-const Product = mongoose.model("Product", productSchema);
+const Product = require("./item.model.js");
 
 router.delete("/api/products/:itemId", (req, res) => {
-    Product.deleteOne({"_id" : mongoose.Types.ObjectId(req.params.itemId)}, (err) => {
-        if(err) return res.send(500);
+    Product.deleteOne({ "_id": mongoose.Types.ObjectId(req.params.itemId) }, (err) => {
+        if (err) {
+            console.log(err);
+            return res.send(500);
+        }
         console.log("save success");
         return res.send(204);
     });
@@ -46,7 +39,7 @@ router.post("/api/products", (req, res) => {
 
 router.get("/api/products/:itemId", (req, res) => {
     Product.findById(req.params.itemId, function (err, product) {
-        if(err){
+        if (err) {
             console.log("Error:", err);
             res.status(500).send(err);
             return;
@@ -58,8 +51,8 @@ router.get("/api/products/:itemId", (req, res) => {
 // Returns all items
 
 router.get("/api/products", (req, res) => {
-    Product.find({}, function(err, products){
-        if(err){
+    Product.find({}, function (err, products) {
+        if (err) {
             console.log("Error:", err);
             res.status(500).send(err);
             return;
