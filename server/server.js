@@ -35,3 +35,6 @@ mongoose.connect(DB_URL)
         console.error("Error happend");
     });
 
+if (process.env.NODE_ENV !== "production") {
+    require(".env").config();
+}
