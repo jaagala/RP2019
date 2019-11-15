@@ -15,7 +15,7 @@ app.use(userRouter);
 app.use(itemRouter);
 
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../dist", "index.html"));
 });
 app.use(express.static("dist"));
 
@@ -36,5 +36,5 @@ mongoose.connect(DB_URL)
     });
 
 if (process.env.NODE_ENV !== "production") {
-    require(".env").config();
+    require("dotenv").config();
 }
