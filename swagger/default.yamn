@@ -27,3 +27,45 @@ paths:
           description: bad email or password
         401:
           description: unauthorized
+
+  /api/v1/login:
+    post:
+      operationId: log in
+      summary: User logs in
+      description: ""
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: OK.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: object
+                  user:
+                    type: object
+                    properties:
+                      email:
+                        type: string
+                      createdAt:
+                        type: string
+                      _id:
+                        type: string
+        422:
+          description: bad email or password
+        401:
+          description: unauthorized
+
+          
