@@ -53,7 +53,7 @@ paths:
                 type: object
                 properties:
                   token:
-                    type: object
+                    type: string
                   user:
                     type: object
                     properties:
