@@ -1,27 +1,34 @@
 import React from "react";
 import "./form.css";
+import PropTypes from "prop-types";
 
 class SignupPage extends React.Component {
+
+    static propTypes = {
+        history: PropTypes.object.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.state = {
             email: "",
-            password: "",
-            confirmPassword: ""
+            password: ""
         };
     }
     handleSubmit = (event) => {
         event.preventDefault();
         console.log("Submit", this.state);
-        fetch("/api/users/signup", {
+        fetch("/api/v1/auth/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(this.state),
-        })
-            .then(res => {
-                console.log("response", res);
+            })
+            .then( res => res.json())
+            .then( data => {
+                console.log(data);
+                this.props.history.push("/login");
             })
             .catch(err => {
                 console.log("Error", err);
@@ -34,15 +41,17 @@ class SignupPage extends React.Component {
     }
     render(){
         return(
+            <>
+                <div><h1 style={{ textAlign: "center" }}>Sign up</h1></div>
                 <div className="form">
                     <form className="register-form" onSubmit={this.handleSubmit}>
                         <input type="email" placeholder="email address" name={"email"} onChange={this.handleChange}/>
                         <input type="password" placeholder="password" name={"password"} onChange={this.handleChange}/>
-                        <input type="password" placeholder="password" name={"confirmPassword"} onChange={this.handleChange}/>
                         <button>create</button >
                         <p className="message">Already registered? <a href="/login">Sign In</a></p>
                     </form>
                 </div>
+            </>
         );
     }
 }

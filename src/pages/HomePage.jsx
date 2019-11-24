@@ -22,7 +22,7 @@ class HomePage extends React.PureComponent {
     }
 
     fetchItems(){
-        fetch("/api/products")
+        fetch("/api/v1/products")
             .then(res => {
                 //console.log("res", res);
                 return res.json();

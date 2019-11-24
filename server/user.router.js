@@ -4,7 +4,7 @@ const router = express.Router();
 
 //Gets all users
 
-router.get("/api/users", (req, res) => {
+router.get("/get", (req, res) => {
     User.find({}, (err, docs) => {
         if(err) return handleError(err, res);
         res.status(200).json(docs);
@@ -13,7 +13,7 @@ router.get("/api/users", (req, res) => {
 
 //deletes all users
 
-router.delete("/api/users", (req,res) => {
+router.delete("/delete", (req,res) => {
     User.deleteMany({}, (err, docs) => {
         if(err) return handleError(err, res);
         console.log(docs);

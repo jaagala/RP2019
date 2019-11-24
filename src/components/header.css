@@ -47,4 +47,6 @@ html, body{
     font-size: 18px;
     font-family: "Apple Chancery", cursive;
     font-weight: 500;
+    text-decoration: none;
+    color: black;
 }

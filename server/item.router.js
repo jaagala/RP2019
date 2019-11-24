@@ -3,7 +3,7 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const Product = require("./item.model.js");
 
-router.delete("/api/products/:itemId", (req, res) => {
+router.delete("/products/:itemId", (req, res) => {
     Product.deleteOne({ "_id": mongoose.Types.ObjectId(req.params.itemId) }, (err) => {
         if (err) {
             console.log(err);
@@ -16,7 +16,7 @@ router.delete("/api/products/:itemId", (req, res) => {
 
 //Creates a new product
 
-router.post("/api/products", (req, res) => {
+router.post("/products", (req, res) => {
     const props = {
         imgSrc: "google.com",
         title: "red phone",
@@ -37,7 +37,7 @@ router.post("/api/products", (req, res) => {
 
 // Returns a product 
 
-router.get("/api/products/:itemId", (req, res) => {
+router.get("/products/:itemId", (req, res) => {
     Product.findById(req.params.itemId, function (err, product) {
         if (err) {
             console.log("Error:", err);
@@ -50,7 +50,7 @@ router.get("/api/products/:itemId", (req, res) => {
 
 // Returns all items
 
-router.get("/api/products", (req, res) => {
+router.get("/products", (req, res) => {
     Product.find({}, function (err, products) {
         if (err) {
             console.log("Error:", err);
