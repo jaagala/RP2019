@@ -9,17 +9,21 @@ import { BrowserRouter , Route, Switch} from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Notfound from "./pages/NotFound.jsx";
 
+const authDefaultValue = {
+    token: null,
+    user: {
+        email: null,
+        _id: null,
+        createdAt: null,
+    }
+};
+
+export const AuthContext = React.createContext(authDefaultValue);
+
 const root = document.getElementById("app");
 
 class App extends React.Component{
-    state = {
-        token: null,
-        user: {
-            email: null,
-            _id: null,
-            createdAt: null,
-        },
-    };
+    state = authDefaultValue;
 
     handleLogin = ({token, user}) => {
         this.setState({
@@ -29,41 +33,34 @@ class App extends React.Component{
 
     render(){
         return(
-            <BrowserRouter>
-                <Route
-                    path={"/"}
-                    render={(props) =>
-                        <Header
-                            {...props}
-                            token={this.state.token}
-                            user={this.state.user}
+            <AuthContext.Provider value={this.state}>
+                <BrowserRouter>
+                    <Route path={"/"} component = {Header}/>
+                    <Switch>
+                        <Route path="/" exact component={HomePage} />
+                        <Route
+                            path={"/login"}
+                            exact
+                            render={(props) =>
+                                <LoginPage
+                                    {...props}
+                                    onLogin={this.handleLogin}
+                                />
+                            }
                         />
-                    }
-                />
-                <Switch>
-                    <Route path="/" exact component={HomePage} />
-                    <Route
-                        path={"/login"}
-                        exact
-                        render={(props) =>
-                            <LoginPage
-                                {...props}
-                                onLogin={this.handleLogin}
-                            />
-                        }
-                    />
-                    <Route path="/signup" exact component={SignupPage} />
-                    <Route
-                        path="/users/:userId"
-                        exact
-                        render={(props) => {
-                            return <UserPage {...props} user={this.state.user} />;
-                        }}
-                    />
-                    <Route path="/products/:itemId" exact component={ItemPage} />
-                    <Route component={Notfound} />
-                </Switch>
-            </BrowserRouter>
+                        <Route path="/signup" exact component={SignupPage} />
+                        <Route
+                            path="/users/:userId"
+                            exact
+                            render={(props) => {
+                                return <UserPage {...props} user={this.state.user} />;
+                            }}
+                        />
+                        <Route path="/products/:itemId" exact component={ItemPage} />
+                        <Route component={Notfound} />
+                    </Switch>
+                </BrowserRouter>
+            </AuthContext.Provider>
         );
     }
 }

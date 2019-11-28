@@ -3,33 +3,32 @@ import {Link} from "react-router-dom";
 import "./header.css";
 import {userIcon, shoppingCart} from "../icons.js";
 import PropTypes from "prop-types";
+import {AuthContext} from "../index.jsx";
 
-const Header = ({token, user}) => {
-    console.log(token);
+const Header = () => {
     return (
-        <div className="header" >
-            <Link to="/">
-                <img src="/tlu.png" className="header__logo"></img>
-            </Link>
-            <div className="header__buttons">
-                {user.email && <WelcomeIcon user={ user }/>}
-                {!user.email && <LoginRegisterIcon/>}
-
-                <div className={"header__button"}>
-                    <img src={shoppingCart} style={{height: 35}}></img>
-                        <div className={"header__button-text"}>Cart</div>
-                </div>
-                {/*<button className="button" >Log in / Setup</button>
-                <button className="button" >Cart</button>*/}
-            </div>
-
-        </div>
+        <AuthContext.Consumer>
+            {
+                (contextValue) => (
+                    <div className="header" >
+                        <Link to="/">
+                            <img src="/tlu.png" className="header__logo"></img>
+                        </Link>
+                        <div className="header__buttons">
+                            {contextValue.user.email && <WelcomeIcon user={contextValue.user} />}
+                            {!contextValue.user.email && <LoginRegisterIcon />}
+                            <div className={"header__button"}>
+                                <img src={shoppingCart} style={{ height: 35 }}></img>
+                                <div className={"header__button-text"}>Cart</div>
+                            </div>
+                            {/*<button className="button" >Log in / Setup</button>
+                    <button className="button" >Cart</button>*/}
+                        </div>
+                    </div>
+                )
+            }
+        </AuthContext.Consumer>
     );
-};
-
-Header.propTypes = {
-    token: PropTypes.string,
-    user: PropTypes.object
 };
 
 const LoginRegisterIcon = () => {
