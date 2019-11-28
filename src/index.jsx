@@ -1,13 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage.jsx";
 import ItemPage from "./pages/ItemPage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import SignupPage from "./pages/SignupPage.jsx";
 import UserPage from "./pages/UserPage.jsx";
-import { BrowserRouter , Route, Switch} from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Notfound from "./pages/NotFound.jsx";
+import CartPage from "./pages/CartPage.jsx";
 import store from "./store.js";
 console.log("Hello", store);
 
@@ -53,6 +54,7 @@ class App extends React.Component{
                         <Route path="/signup" exact component={SignupPage} />
                         <Route path="/users/:userId" exact component={UserPage} />
                         <Route path="/products/:itemId" exact component={ItemPage} />
+                        <Route path="/checkout/cart" exact component={CartPage} />
                         <Route component={Notfound} />
                     </Switch>
                 </BrowserRouter>
