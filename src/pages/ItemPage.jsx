@@ -16,17 +16,15 @@ class ItemPage extends React.PureComponent {
     fetchItem(){
         fetch("/api/v1/products/" + this.props.match.params.itemId)
             .then(res => {
-                console.log(res);
                 return res.json();
             })
             .then(item => {
-                console.log("item", item);
                 this.setState({
                     ...item
                 });
             })
+            // eslint-disable-next-line no-unused-vars
             .catch(err => {
-                console.log("item page ", err);
             });
     }
 

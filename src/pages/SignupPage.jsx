@@ -17,7 +17,6 @@ class SignupPage extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        console.log("Submit", this.state);
         fetch("/api/v1/auth/signup", {
             method: "POST",
             headers: {
@@ -26,8 +25,8 @@ class SignupPage extends React.Component {
             body: JSON.stringify(this.state),
             })
             .then( res => res.json())
+            // eslint-disable-next-line no-unused-vars
             .then( data => {
-                console.log(data);
                 this.props.history.push("/login");
             })
             .catch(err => {

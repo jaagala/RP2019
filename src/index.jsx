@@ -8,6 +8,8 @@ import UserPage from "./pages/UserPage.jsx";
 import { BrowserRouter , Route, Switch} from "react-router-dom";
 import Header from "./components/Header.jsx";
 import Notfound from "./pages/NotFound.jsx";
+import store from "./store.js";
+console.log("Hello", store);
 
 const authDefaultValue = {
     token: null,
