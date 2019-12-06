@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 const User = require("./user.model.js");
 const jwt = require("jsonwebtoken");
 

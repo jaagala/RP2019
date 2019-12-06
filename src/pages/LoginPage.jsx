@@ -1,6 +1,7 @@
 import React from "react";
 import "./form.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class LoginPage extends React.PureComponent {
 
@@ -60,7 +61,7 @@ class LoginPage extends React.PureComponent {
                             onChange={this.handleChange} 
                         />
                         <button>login</button>
-                        <p className="message">Not registered? <a href="/signup">Create an account</a></p>
+                        <p className="message">Not registered? <Link to={"/signup"}>Create an account</ Link></p>
                     </form>
                 </div>
             </>

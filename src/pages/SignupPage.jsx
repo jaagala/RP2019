@@ -1,6 +1,7 @@
 import React from "react";
 import "./form.css";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 class SignupPage extends React.Component {
 
@@ -47,7 +48,7 @@ class SignupPage extends React.Component {
                         <input type="email" placeholder="email address" name={"email"} onChange={this.handleChange}/>
                         <input type="password" placeholder="password" name={"password"} onChange={this.handleChange}/>
                         <button>create</button >
-                        <p className="message">Already registered? <a href="/login">Sign In</a></p>
+                        <p className="message">Already registered? <Link to={"/login"}>Sign In</Link></p>
                     </form>
                 </div>
             </>

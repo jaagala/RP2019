@@ -1,0 +1,23 @@
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+}
+img{
+    width: 20%;
+}
+.shoppint-cart{
+    margin: 20px;
+}
+.cell{
+    width: 20%;
+    height: 50px;
+}
+.box-cart__summary{
+    float: right;
+    padding: 20px;
+}
+tr{
+    padding: 20px
+}

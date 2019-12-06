@@ -9,8 +9,7 @@ import UserPage from "./pages/UserPage.jsx";
 import Header from "./components/Header.jsx";
 import Notfound from "./pages/NotFound.jsx";
 import CartPage from "./pages/CartPage.jsx";
-import store from "./store.js";
-console.log("Hello", store);
+//import store from "./store.js";
 
 const authDefaultValue = {
     token: null,
@@ -41,10 +40,7 @@ class App extends React.Component{
                     <Route path={"/"} component = {Header}/>
                     <Switch>
                         <Route path="/" exact component={HomePage} />
-                        <Route
-                            path={"/login"}
-                            exact
-                            render={(props) =>
+                        <Route path={"/login"} exact render={(props) =>
                                 <LoginPage
                                     {...props}
                                     onLogin={this.handleLogin}

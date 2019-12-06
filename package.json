@@ -7,7 +7,10 @@
     "build": "webpack",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server/server.js",
-    "start:dev": "webpack-dev-server --open --mode=\"development\""
+    "start:dev": "webpack-dev-server --open --mode=\"development\"",
+    "start:prelive": "npm run build && PORT=3001 npm run start",
+    "start:backend": "nodemon ./server/server.js",
+    "start:frontend": "webpack-dev-server --open --mode=\"development\""
   },
   "repository": {
     "type": "git",

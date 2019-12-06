@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
 import {getItems} from "../items/itemsActions.js";
 import {FaRegTrashAlt, FaAngleRight} from "react-icons/fa";
-//import "../components/cart.css";
+import "../components/cart.css";
 
 class CartPage extends React.Component {
     state = {
@@ -25,10 +26,10 @@ class CartPage extends React.Component {
     render() {
         return (
             <div className={"spacer"}>
-                <div className={"box cart"}>
+                <div className={"box-cart"}>
                     <Table rows={this.state.rows} />
                 </div>
-                <div className={"box cart__summary"}>
+                <div className={"box-cart__summary"}>
                     <table>
                         <tbody>
                             <tr><td>Vahesumma</td><td>200 €</td></tr>
@@ -48,13 +49,13 @@ class CartPage extends React.Component {
 
 const Table = ({rows}) => {
     return (
-        <div className={"table"}>
+        <div className={"shopping-cart"}>
             <div className={"row"}>
                 <div className={"cell"} >Toode</div>
-                <div className={"cell cell--grow"}>Nimetus</div>
-                <div className={"cell"}>Kategooria</div>
-                <div className={"cell-right"}>Summa</div>
-                <div className={"cell cell--small"}></div>
+                <div className={"cell2"}>Nimetus</div>
+                <div className={"cell3"}>Kategooria</div>
+                <div className={"cell4"}>Summa</div>
+                <span className={"cell5"}></span>
             </div>
             {rows.map( (row) => <Row key={row._id} {...row} />)}
         </div>
@@ -69,18 +70,18 @@ const Row = ({title, imgSrc, category, price}) => {
     return (
         <div className={"row"}>
             <div className={"cell"}>
-                <img src={imgSrc} />
+                <img src={imgSrc} className={"cell-img"}/>
             </div>
-            <div className={"cell cell--grow"}>
+            <div className={"cell2"}>
                 {title}
             </div>
-            <div className={"cell"}>
+            <div className={"cell3"}>
                 {category}
             </div>
-            <div className={"cell cell--right"}>
+            <div className={"cell4"}>
                 {price} €
             </div>
-            <div className={"cell cell--small cell--center"}>
+            <div className={"cell5"}>
                 <FaRegTrashAlt/>
             </div>
         </div>
