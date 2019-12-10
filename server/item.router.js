@@ -1,66 +1,65 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const Product = require("./item.model.js");
+const Item = require("./item.model.js");
 
-router.delete("/products/:itemId", (req, res) => {
-    Product.deleteOne({ "_id": mongoose.Types.ObjectId(req.params.itemId) }, (err) => {
+router.post("/", (req, res) => {
+    const props = {
+        imgSrc: "google.com",
+        title: "phone red",
+        price: 399,
+        category: "phones"
+    };
+    const item1 = new Item(props);
+    item1.save(err => {
         if (err) {
-            console.log(err);
+            console.log("Error", err);
+            res.sendStatus(500);
+            return;
+        }
+        console.log("Success createItem");
+        res.sendStatus(201);
+    });
+});
+
+//Returns all items
+
+
+router.get("/", (req, res) => {
+    Item.find({}, function (err, items) {
+        if (err) {
+            console.log("Error: ", err);
+            res.status(500).send(err);
+            return;
+        }
+        res.send(items);
+    });
+});
+
+
+//Returns an item
+
+
+router.get("/:itemId", (req, res) => {
+    Item.findById(req.params.itemId, function (err, item) {
+        if (err) {
+            console.log("Error: ", err);
+            res.status(500).send(err);
+            return;
+        }
+        res.send(item);
+    });
+});
+
+router.delete("/:itemId", (req, res) => {
+    Item.deleteOne({ "_id": mongoose.Types.ObjectId(req.params.itemId) }, function (err) {
+        if (err) {
+            console.log("Error: ", err);
             return res.send(500);
         }
-        console.log("save success");
+        console.log("Delete success!");
         return res.send(204);
     });
 });
 
-//Creates a new product
-
-router.post("/products", (req, res) => {
-    const props = {
-        imgSrc: "google.com",
-        title: "red phone",
-        price: 200,
-        category: "phones"
-    };
-    const product1 = new Product(props);
-    product1.save(err => {
-        if (err) {
-            console.log("Error: ", err);
-            res.send(500);
-            return;
-        }
-        console.log("Success create!");
-        res.send(201);
-    });
-});
-
-// Returns a product 
-
-router.get("/products/:itemId", (req, res) => {
-    Product.findById(req.params.itemId, function (err, product) {
-        if (err) {
-            console.log("Error:", err);
-            res.status(500).send(err);
-            return;
-        }
-        res.send(product);
-    });
-});
-
-// Returns all items
-
-router.get("/products", (req, res) => {
-    Product.find({}, function (err, products) {
-        if (err) {
-            console.log("Error:", err);
-            res.status(500).send(err);
-            return;
-        }
-        res.send(products);
-    });
-});
-
-
-
-module.exports = router;
+module.exports = router; 

@@ -1,31 +1,88 @@
-const User = require("./user.model.js");
 const express = require("express");
 const router = express.Router();
+const User = require("./user.model.js");
+const Item = require("./item.model.js");
+const { authMiddleware } = require("./middleware.js");
 
-//Gets all users
+router.param("userId", (req, res, next, userId) => {
+    User.findById(userId, (err, user) => {
+        if (err) return handleError(err, res);
+        if (!user) return handleError("user not found", res);
 
-router.get("/get", (req, res) => {
+        req.user = user;
+        next();
+    });
+});
+
+router.param("itemId", (req, res, next, itemId) => {
+    Item.findById(itemId, (err, item) => {
+        if (err) return handleError(err, res);
+        if (!item) return handleError("item not found", res);
+
+        req.item = item;
+        next();
+    });
+});
+
+router.get("/:userId", authMiddleware, (req, res) => {
+    res.send(req.user);
+});
+
+/* add an item to a cart */
+router.put("/:userId/cart/:itemId", (req, res) => {
+    req.user.cart.push(req.item._id.toString());
+    req.user.save((err) => {
+        if (err) return handleError(err, res);
+
+        res.send(200);
+    });
+});
+
+/* remove  an item to a cart */
+router.delete("/:userId/cart/:itemId", (req, res) => {
+    const index = req.user.cart.findIndex(itemId => itemId === req.item._id.toString());
+    req.user.cart.splice(index, 1);
+
+    req.user.save((err) => {
+        if (err) return handleError(err, res);
+
+        res.send(200);
+    });
+});
+
+
+/* Gets all users */
+router.get("/", (req, res) => {
+    console.log("gets all users");
     User.find({}, (err, docs) => {
-        if(err) return handleError(err, res);
+        if (err) return handleError(err, res);
         res.status(200).json(docs);
     });
 });
 
-//deletes all users
-
-router.delete("/delete", (req,res) => {
+/* Deletes all users */
+router.delete("/", (req, res) => {
     User.deleteMany({}, (err, docs) => {
-        if(err) return handleError(err, res);
+        if (err) return handleError(err, res);
         console.log(docs);
-        console.log("Success delete many users");
+        console.log("success delete many users");
         res.send(204);
     });
 });
 
+router.post("/", (req, res) => {
+    User.signup(req.body)
+        .then(user => {
+            res.status(200).json(user);
+        })
+        .catch(err => {
+            console.log("error", err);
+            res.send(500);
+        });
+});
+
 function handleError(err, res) {
     console.log(err);
-    res.sendStatus(500);
+    res.send(500);
 }
-
-
-module.exports = router;
+module.exports = router; 
