@@ -1,43 +1,49 @@
-/* eslint-disable no-unused-vars */
-import React from "react";
 import PropTypes from "prop-types";
-import {getItems} from "../items/itemsActions.js";
-import {FaRegTrashAlt, FaAngleRight} from "react-icons/fa";
+import React from "react";
+import { FaAngleRight, FaRegTrashAlt } from "react-icons/fa";
+import { connect } from "react-redux";
 import "../components/cart.css";
+import Fancybutton from "../components/Fancybutton.jsx";
+import {removeItem} from "../store.js";
 
 class CartPage extends React.Component {
-    state = {
-        rows: []
+    static propTypes = {
+        cart: PropTypes.arrayOf(PropTypes.shape(ItemProps)).isRequired,
+        dispatch: PropTypes.func.isRequired,
     };
-    
-    componentDidMount(){
-        getItems()
-        .then(items => {
-            this.setState({
-                rows: items.slice(0,4)
-            });
-        })
-        .catch(err => {
-            console.log(err);
-            console.error("Something went wrong");
-        });
+
+    calcNumbers = () => {
+        const VAT = 20;
+        const sum  = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
+        const tax = Math.round(sum / 100 * VAT);
+        return {
+            sum, tax
+        };
+    };
+
+    handleTrash = (_id) => {
+        this.props.dispatch(removeItem(_id));
     }
 
     render() {
+        const {tax, sum} = this.calcNumbers();
         return (
             <div className={"spacer"}>
                 <div className={"box-cart"}>
-                    <Table rows={this.state.rows} />
+                    <Table 
+                        onTrash={this.handleTrash}
+                        rows={this.props.cart} 
+                    />
                 </div>
                 <div className={"box-cart__summary"}>
                     <table>
                         <tbody>
-                            <tr><td>Vahesumma</td><td>200 €</td></tr>
-                            <tr><td>Vahesumma</td><td>25 €</td></tr>
-                            <tr><td>Vahesumma</td><td>225 €</td></tr>
+                            <tr><td>Vahesumma</td><td>{sum} €</td></tr>
+                            <tr><td>Käibemaks</td><td>{tax} €</td></tr>
+                            <tr><td>Kogusumma</td><td>{tax + sum} €</td></tr>
                             <tr>
                                 <td></td>
-                                <td><div className={"submit-button"}>Vormista ost<FaAngleRight /></div></td>
+                                <td><Fancybutton onClick={() => console.log("buy")}>Vormista ost<FaAngleRight /></Fancybutton></td>
                             </tr>
                         </tbody>
                     </table>
@@ -47,7 +53,7 @@ class CartPage extends React.Component {
     }
 }
 
-const Table = ({rows}) => {
+const Table = ({rows, onTrash}) => {
     return (
         <div className={"shopping-cart"}>
             <div className={"row"}>
@@ -57,16 +63,17 @@ const Table = ({rows}) => {
                 <div className={"cell4"}>Summa</div>
                 <span className={"cell5"}></span>
             </div>
-            {rows.map( (row) => <Row key={row._id} {...row} />)}
+            {rows.map( (row, index) => <Row onTrash={onTrash} key={index} {...row} />)}
         </div>
     );
 };
 
 Table.propTypes = {
     rows: PropTypes.array.isRequired,
+    onTrash: PropTypes.func.isRequired,
 };
 
-const Row = ({title, imgSrc, category, price}) => {
+const Row = ({_id, title, imgSrc, category, price, onTrash}) => {
     return (
         <div className={"row"}>
             <div className={"cell"}>
@@ -81,8 +88,8 @@ const Row = ({title, imgSrc, category, price}) => {
             <div className={"cell4"}>
                 {price} €
             </div>
-            <div className={"cell5"}>
-                <FaRegTrashAlt/>
+            <div className={"cell5 hover--opacity"}>
+                <FaRegTrashAlt title={"Eemalda"} onClick={() => onTrash(_id)}/>
             </div>
         </div>
     );
@@ -96,6 +103,15 @@ export const ItemProps = {
     price: PropTypes.number.isRequired,
 };
 
-Row.propTypes = ItemProps;
+Row.propTypes = {
+    ...ItemProps,
+    onTrash: PropTypes.func.isRequired,
+};
 
-export default CartPage;
+const mapStateToProps = (store) => {
+    return {
+        cart: store.cart
+    };
+};
+
+export default connect(mapStateToProps)(CartPage);

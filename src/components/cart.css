@@ -3,9 +3,12 @@
   display: flex;
   justify-content: space-between;
   margin: 20px;
+  padding-bottom: 90px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
 }
 img{
-    width: 20%;
+    width: 30%;
 }
 .shoppint-cart{
     margin: 20px;
@@ -14,10 +17,51 @@ img{
     width: 20%;
     height: 50px;
 }
+.box-cart{
+    background-color: white;
+    padding: 5px;
+    padding-bottom: 30px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
 .box-cart__summary{
     float: right;
-    padding: 20px;
+    background-color: white;
+    padding: 5px;
+    margin: 20px;
+    border-radius: 10px;
+    border: 1px solid grey;
 }
 tr{
     padding: 20px
+}
+.cell{
+    position: absolute;
+}
+.cell2{
+    position: relative;
+    left: 200px;
+    width: 45%;
+}
+.cell3{
+    position: relative;
+    width: 15%;
+}
+.cell4{
+    position: relative;
+    width: 10%;
+}
+.cell5{
+    position: relative;
+    width: 5%;
+}
+.hover--opacity:hover{
+    cursor: pointer;
+    opacity: 0.5;
+    transition: all .2s;
+}
+svg{
+    width: 25px;
+    height: 25px;
 }

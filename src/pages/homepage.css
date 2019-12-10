@@ -1,12 +1,10 @@
 .itemFilters-wrapper{
+    left: 5%;
     position: relative;
     display: flex;
-    width: 1450px;
     margin: 0 auto;
     margin-bottom: 25px;
-    float: left;
     clear: left;
-    left: 12%;
 }
 
 .itemFilters-wrapper > div{
