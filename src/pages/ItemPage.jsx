@@ -3,7 +3,8 @@ import propTypes from "prop-types";
 import "./itemPage.css";
 import Fancybutton from "../components/Fancybutton.jsx";
 import {connect} from "react-redux";
-import {addItem} from "../store.js";
+import {addItem} from "../store/actions.js";
+import {toast} from "react-toastify";
 
 class ItemPage extends React.PureComponent {
 
@@ -36,7 +37,7 @@ class ItemPage extends React.PureComponent {
     }
 
     handleBuy = () => {
-        console.log("buy");
+        toast.success("Toode lisatud");
         this.props.dispatch(addItem(this.state));
     }
 
@@ -47,7 +48,7 @@ class ItemPage extends React.PureComponent {
             <>
                 <div className="itemContainer">
                     <img className={"itemPage__img"} src={this.state.imgSrc} />
-                    <div className={"item__title"}>{this.state.title}</div>
+                    <div className={"itemPage__title"}>{this.state.title}</div>
                     <div className={"itemPage__price"}>{this.state.price} €</div>
                     <div className={"item__desc"}>{LoremIpsum}</div>
                     <div>

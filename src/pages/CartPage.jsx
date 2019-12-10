@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
+import Fancybutton from "../components/Fancybutton.jsx";
 import { FaAngleRight, FaRegTrashAlt } from "react-icons/fa";
 import { connect } from "react-redux";
+import { removeItem } from "../store/actions.js";
 import "../components/cart.css";
-import Fancybutton from "../components/Fancybutton.jsx";
-import {removeItem} from "../store.js";
+import { toast } from "react-toastify";
 
 class CartPage extends React.Component {
     static propTypes = {
@@ -14,7 +15,7 @@ class CartPage extends React.Component {
 
     calcNumbers = () => {
         const VAT = 20;
-        const sum  = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
+        const sum = Math.round(this.props.cart.reduce((acc, item) => acc + item.price, 0));
         const tax = Math.round(sum / 100 * VAT);
         return {
             sum, tax
@@ -23,16 +24,17 @@ class CartPage extends React.Component {
 
     handleTrash = (_id) => {
         this.props.dispatch(removeItem(_id));
+        toast.success("Toode eemaldatud");
     }
 
     render() {
-        const {tax, sum} = this.calcNumbers();
+        const { tax, sum } = this.calcNumbers();
         return (
             <div className={"spacer"}>
                 <div className={"box-cart"}>
-                    <Table 
+                    <Table
                         onTrash={this.handleTrash}
-                        rows={this.props.cart} 
+                        rows={this.props.cart}
                     />
                 </div>
                 <div className={"box-cart__summary"}>
@@ -53,7 +55,7 @@ class CartPage extends React.Component {
     }
 }
 
-const Table = ({rows, onTrash}) => {
+const Table = ({ rows, onTrash }) => {
     return (
         <div className={"shopping-cart"}>
             <div className={"row"}>
@@ -63,7 +65,7 @@ const Table = ({rows, onTrash}) => {
                 <div className={"cell4"}>Summa</div>
                 <span className={"cell5"}></span>
             </div>
-            {rows.map( (row, index) => <Row onTrash={onTrash} key={index} {...row} />)}
+            {rows.map((row, index) => <Row onTrash={onTrash} key={index} {...row} />)}
         </div>
     );
 };
@@ -73,11 +75,11 @@ Table.propTypes = {
     onTrash: PropTypes.func.isRequired,
 };
 
-const Row = ({_id, title, imgSrc, category, price, onTrash}) => {
+const Row = ({ _id, title, imgSrc, category, price, onTrash }) => {
     return (
         <div className={"row"}>
             <div className={"cell"}>
-                <img src={imgSrc} className={"cell-img"}/>
+                <img src={imgSrc} className={"cell-img"} />
             </div>
             <div className={"cell2"}>
                 {title}
@@ -89,7 +91,7 @@ const Row = ({_id, title, imgSrc, category, price, onTrash}) => {
                 {price} €
             </div>
             <div className={"cell5 hover--opacity"}>
-                <FaRegTrashAlt title={"Eemalda"} onClick={() => onTrash(_id)}/>
+                <FaRegTrashAlt title={"Eemalda"} onClick={() => onTrash(_id)} />
             </div>
         </div>
     );

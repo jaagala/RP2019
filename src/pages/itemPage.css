@@ -6,17 +6,23 @@
     height: 25%;
 }
 .itemPage__price{
-    text-align: left;
-    color: grey;
     position: relative;
+    color: grey;
     float:right;
+    left: 100px;
     margin-top: 60px;
-    right: 47.5%;
+    font-size: 26px;
 }
 .item__title{
-    position: relative;
+    text-align: center;
     float: right;
     right: 50%;
+    font-size: 30px;
+}
+.itemPage__title{
+    text-align: center;
+    float: right;
+    margin-right: 400px;
     font-size: 30px;
 }
 .item__desc{

@@ -2,6 +2,7 @@ import React from "react";
 import "./form.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 
 class SignupPage extends React.Component {
 
@@ -29,8 +30,10 @@ class SignupPage extends React.Component {
             // eslint-disable-next-line no-unused-vars
             .then( data => {
                 this.props.history.push("/login");
+                toast.success("Registreerumine oli edukas");
             })
             .catch(err => {
+                toast.error("Registreerumine ebaõnnestus");
                 console.log("Error", err);
             });
     }
