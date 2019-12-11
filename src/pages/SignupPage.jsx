@@ -27,6 +27,10 @@ class SignupPage extends React.Component {
             body: JSON.stringify(this.state),
             })
             .then( res => res.json())
+            .then(res => {
+                if (!res.ok) throw "signup failed";
+                return res.json();
+            })
             // eslint-disable-next-line no-unused-vars
             .then( data => {
                 this.props.history.push("/login");
