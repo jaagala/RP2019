@@ -28,7 +28,6 @@
 .item__desc{
     position: relative;
     float: right;
-    padding-right: 20px;
+    padding-right: 30px;
     width: 72%;
-    margin-top: -16%;
 }

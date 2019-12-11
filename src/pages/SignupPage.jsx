@@ -3,6 +3,7 @@ import "./form.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import * as services from "../services.js";
 
 class SignupPage extends React.Component {
 
@@ -19,20 +20,8 @@ class SignupPage extends React.Component {
     }
     handleSubmit = (event) => {
         event.preventDefault();
-        fetch("/api/v1/auth/signup", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(this.state),
-            })
-            .then( res => res.json())
-            .then(res => {
-                if (!res.ok) throw "signup failed";
-                return res.json();
-            })
-            // eslint-disable-next-line no-unused-vars
-            .then( data => {
+        services.signup(this.state)
+            .then( () => {
                 this.props.history.push("/login");
                 toast.success("Registreerumine oli edukas");
             })

@@ -9,7 +9,7 @@ export const getItems = () => {
 };
 
 export const getItem = ({itemId}) => {
-    return fetch(`${basePath}/items/${itemId}`)
+    return fetch(`${basePath}/products/${itemId}`)
         .then(res => {
             if (!res.ok) throw "getItem failed";
             return res.json();

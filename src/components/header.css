@@ -13,6 +13,7 @@ html, body{
     margin-bottom: 25px;
     position: sticky;
     top: 0;
+    width: 100%;
 }
 
 .header__logo{

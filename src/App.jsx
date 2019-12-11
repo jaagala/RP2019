@@ -10,6 +10,18 @@ import "react-toastify/dist/ReactToastify.css";
 
 const { store, persistor} = configureStore();
 
+var docWidth = document.documentElement.offsetWidth;
+
+[].forEach.call(
+    document.querySelectorAll("*"),
+    function (el) {
+        if (el.offsetWidth > docWidth) {
+            console.log(el);
+            console.log(1);
+        }
+    }
+);
+
 class App extends React.Component {
 
     render() {

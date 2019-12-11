@@ -6,6 +6,7 @@ import { shoppingCart, userIcon } from "../icons.js";
 import { ItemProps } from "../pages/CartPage.jsx";
 import "./header.css";
 import { UserPropTypes } from "../store/reducer.js";
+import * as selectors from "../store/selectors.js";
 
 const Header = ({user, cart}) => {
     return (
@@ -70,10 +71,11 @@ WelcomeIcon.propTypes = {
 
 const mapStateToProps = (store) => {
     return {
-        cart: store.cart,
-        user: store.user,
+        cart: selectors.getCart(store),
+        user: selectors.getUser(store),
 
     };
 };
+
 
 export default connect(mapStateToProps)(Header);

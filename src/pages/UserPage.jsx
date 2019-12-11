@@ -5,6 +5,7 @@ import { UserPropTypes } from "../store/reducer";
 import Fancybutton from "../components/Fancybutton.jsx";
 import { userUpdate, tokenUpdate } from "../store/actions.js";
 import protectedRedirect from "../components/protectedRedirect.jsx";
+import * as selectors from "../store/selectors.js";
 
 class UserPage extends React.Component {
     static propTypes = {
@@ -39,7 +40,7 @@ class UserPage extends React.Component {
 
 const mapStateToProps = (store) => {
     return {
-        user: store.user,
+        user: selectors.getUser(store),
     };
 };
 

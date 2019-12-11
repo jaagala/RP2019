@@ -1,12 +1,13 @@
-import React from "react";
-import ItemList from "../components/ItemList.jsx";
-import Checkbox from "../components/Checkbox.jsx";
-import SortDropdown from "../components/SortDropdown.jsx";
 import propTypes from "prop-types";
-import "./homepage.css";
+import React from "react";
 import { connect } from "react-redux";
-import {getItems} from "../store/actions";
-import {ItemProps} from "./CartPage.jsx";
+import Checkbox from "../components/Checkbox.jsx";
+import ItemList from "../components/ItemList.jsx";
+import SortDropdown from "../components/SortDropdown.jsx";
+import { getItems } from "../store/actions";
+import { ItemProps } from "./CartPage.jsx";
+import "./homepage.css";
+import * as selectors from "../store/selectors.js";
 
 class HomePage extends React.PureComponent {
 
@@ -24,15 +25,15 @@ class HomePage extends React.PureComponent {
         };
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.props.dispatch(getItems());
     }
 
     handleFilterSelect = (event) => {
         const categoryName = event.target.name;
-        if(this.isSelected(categoryName)){
+        if (this.isSelected(categoryName)) {
             this.unselectCategory(categoryName);
-        }else{
+        } else {
             this.selectCategory(categoryName);
         }
     };
@@ -44,7 +45,7 @@ class HomePage extends React.PureComponent {
     };
 
     unselectCategory = (categoryName) => {
-        const newArr = this.state.selectedCategories.filter( cn => cn !== categoryName );
+        const newArr = this.state.selectedCategories.filter(cn => cn !== categoryName);
         this.setState({
             selectedCategories: newArr
         });
@@ -53,16 +54,16 @@ class HomePage extends React.PureComponent {
     getVisibleItems = () => {
         return this.props.items
             .filter(item => this.isSelected(item.category))
-            .sort( (a,b) => {
+            .sort((a, b) => {
                 switch (this.state.sortDirection) {
-                    case -1: return  b.price - a.price;
+                    case -1: return b.price - a.price;
                     case 1: return a.price - b.price;
                 }
             });
     }
 
-    isSelected = (name) => this.state.selectedCategories.indexOf(name) >= 0 ;
-    
+    isSelected = (name) => this.state.selectedCategories.indexOf(name) >= 0;
+
     handleSortDropdown = (sortDirection) => {
         this.setState({
             sortDirection: sortDirection
@@ -83,7 +84,7 @@ class HomePage extends React.PureComponent {
                     <div className={"items__found"}>
                         Items found {items.length} in {this.state.selectedCategories.join(", ")}
                     </div>
-                    <SortDropdown 
+                    <SortDropdown
                         direction={this.state.sortDirection}
                         onChange={this.handleSortDropdown}
                     />
@@ -94,7 +95,7 @@ class HomePage extends React.PureComponent {
     }
 }
 
-const ItemFilters = ({ allCategorires, handleDropdown, isSelected}) => {
+const ItemFilters = ({ allCategorires, handleDropdown, isSelected }) => {
     return (
         <div className={"itemFilters-wrapper"}>
             {
@@ -106,7 +107,7 @@ const ItemFilters = ({ allCategorires, handleDropdown, isSelected}) => {
                             onChange={handleDropdown}
                             checked={isSelected(categoryName)}
                         />
-                        );
+                    );
                 })
             }
         </div>
@@ -114,14 +115,14 @@ const ItemFilters = ({ allCategorires, handleDropdown, isSelected}) => {
 };
 
 ItemFilters.propTypes = {
-    allCategorires : propTypes.array,
-    handleDropdown : propTypes.func,
-    isSelected : propTypes.func
+    allCategorires: propTypes.array,
+    handleDropdown: propTypes.func,
+    isSelected: propTypes.func
 };
 
 const mapStateToProps = (store) => {
     return {
-        items: store.items,      
+        items: selectors.getItems(store),
     };
 };
 
