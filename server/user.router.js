@@ -33,7 +33,6 @@ router.put("/:userId/cart/:itemId", (req, res) => {
     req.user.cart.push(req.item._id.toString());
     req.user.save((err) => {
         if (err) return handleError(err, res);
-
         res.send(200);
     });
 });
@@ -42,10 +41,8 @@ router.put("/:userId/cart/:itemId", (req, res) => {
 router.delete("/:userId/cart/:itemId", (req, res) => {
     const index = req.user.cart.findIndex(itemId => itemId === req.item._id.toString());
     req.user.cart.splice(index, 1);
-
     req.user.save((err) => {
         if (err) return handleError(err, res);
-
         res.send(200);
     });
 });

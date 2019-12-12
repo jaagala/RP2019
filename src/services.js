@@ -1,7 +1,7 @@
 const basePath = "api/v1";
 
 export const getItems = () => {
-    return fetch(`${basePath}/items`)
+    return fetch(`${basePath}/products`)
     .then( res => {
         if(!res.ok) throw "getItems failed";
         return res.json();
@@ -37,7 +37,7 @@ export const addItemToCart = ({ userId, itemId, token }) => {
     })
         .then(res => {
             if (!res.ok) throw "addItemToCart failed";
-            return res.json();
+            return true;
         });
 };
 
@@ -50,7 +50,7 @@ export const removeItemFromCart = ({ userId, itemId, token }) => {
     })
         .then(res => {
             if (!res.ok) throw "removeItemFromCart failed";
-            return res.json();
+            return true;
         });
 };
 
