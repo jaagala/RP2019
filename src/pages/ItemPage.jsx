@@ -45,12 +45,16 @@ class ItemPage extends React.PureComponent {
         return (
             <>
                 <div className="itemContainer">
-                    <img className={"itemPage__img"} src={this.state.imgSrc} />
-                    <div className={"itemPage__title"}>{this.state.title}</div>
-                    <div className={"itemPage__price"}>{this.state.price} €</div>
-                    <div className={"item__desc"}>{LoremIpsum}</div>
+                    <div className={"itemPage__image"}>
+                        <img className={"itemPage__img"} src={this.state.imgSrc} />
+                    </div>
+                    <div className={"itemPage__text"}>
+                        <div className={"itemPage__title"}>{this.state.title}</div>
+                        <div className={"itemPage__price"}>{this.state.price} €</div>
+                        <div className={"item__desc"}>{LoremIpsum}</div>
+                    </div>
                     <div>
-                        <Fancybutton onClick={this.handleBuy}>Osta</Fancybutton>
+                        <Fancybutton onClick={this.handleBuy}>Osta &gt;</Fancybutton>
                     </div>
                 </div>
             </>

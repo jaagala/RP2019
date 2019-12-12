@@ -25,8 +25,10 @@
     text-align: center;
 }
 .item__footer{
-    bottom: 0;
-    left: 0;
+    position: relative;
+    margin-top: 175px;
+    text-align: left;
+    font-size: 20px;
 }
 .item:hover{
     position: relative;
@@ -38,10 +40,13 @@
 .item__description{
     text-align: center;
 	color: #606060;
-	font-size: 12px;
+    font-size: 12px;
+    margin-left: 50px;
 }
 .item__price{
     color: #50ac5d;
+    text-align: left;
+    font-size: 20px;
 }
 body{
     background-color: #f0f0f0;

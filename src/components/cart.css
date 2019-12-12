@@ -7,7 +7,7 @@
   margin-bottom: 10px;
   border-bottom: 1px solid rgba(255,153,0,.75);
 }
-img{
+.cell-img{
     width: 30%;
 }
 .shoppint-cart{

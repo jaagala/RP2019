@@ -1,14 +1,8 @@
 .itemContainer{
     position: fixed;
 }
-.itemPage__img{
-    width: 25%;
-    height: 25%;
-}
 .itemPage__price{
-    position: relative;
     color: grey;
-    float:right;
     left: 100px;
     margin-top: 60px;
     font-size: 26px;
@@ -21,13 +15,26 @@
 }
 .itemPage__title{
     text-align: center;
-    float: right;
+    float: left;
     margin-right: 400px;
     font-size: 30px;
 }
 .item__desc{
     position: relative;
-    float: right;
     padding-right: 30px;
     width: 72%;
+}
+.itemPage__img{
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+}
+.itemPage__image{
+    display: inline-block;
+}
+.itemPage__text{
+    display: inline-block;
+    width: 75%;
+    margin-left: 30px;
+    height: 250px;
 }
